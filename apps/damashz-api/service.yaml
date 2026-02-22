@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: damashz-api
+spec:
+  selector:
+    app: damashz-api
+  ports:
+    - port: 8000
+      targetPort: 8000

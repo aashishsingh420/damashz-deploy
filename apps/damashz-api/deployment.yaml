@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: damashz-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: damashz-api
+  template:
+    metadata:
+      labels:
+        app: damashz-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/YOUR_GH_USERNAME/damashz-api:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: damashz-api-config
+            - secretRef:
+                name: damashz-api-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
