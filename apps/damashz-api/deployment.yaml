@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/YOUR_GH_USERNAME/damashz-api:latest
+          image: ghcr.io/aashishsingh420/damashz-api
           ports:
             - containerPort: 8000
           envFrom:
